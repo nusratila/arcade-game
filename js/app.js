@@ -1,4 +1,6 @@
 // Enemies our player must avoid
+let res = document.getElementById("res");
+    res.style.display = "none";
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -10,7 +12,7 @@ var Enemy = function(x,y) {
     // we've provided one for you to get started
     this.x = x;
     this.y = y; 
-    this.speed = getRandomInt(3, 20)*25;
+    this.speed = getRandomInt(5, 25)*25;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -21,7 +23,7 @@ var Enemy = function(x,y) {
 Enemy.prototype.update = function(dt) {
     this.x += dt*this.speed;
     if(this.x>480){
-        this.speed = getRandomInt(3, 20)*25;
+        this.speed = getRandomInt(5, 25)*25;
         this.x=-100;
     }
     let xDif = Math.abs(player.x -this.x);
@@ -56,33 +58,48 @@ Player.prototype.update = function(){
 
 }
 Player.prototype.render = function() {
+   
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+
 Player.prototype.handleInput = function(keystr) {
-console.log(keystr);
 let h = 100;
 let v = 82;
-if(keystr=="left"){
-    if(player.x> 0){
-        player.x -= h;
+
+if(player.y>74){
+    if(keystr=="left"){
+        if(player.x> 0){
+            player.x -= h;
+        }
+        
+    }else if (keystr== "right"){
+        if (player.x <400){
+            player.x += h;
+        }
+        
     }
-    
-}else if (keystr== "right"){
-    if (player.x <400){
-        player.x += h;
+    else if (keystr == "up"){
+        if (player.y>30){
+            player.y -= v;
+        }
+        
     }
-    
+    else if (keystr == "down"){
+        if (player.y <400){
+            player.y += v;
+        }
+    }
+
 }
-else if (keystr == "up"){
-    if (player.y>30){
-        player.y -= v;
-    }
-    
-}
-else if (keystr == "down"){
-    if (player.y <400){
-        player.y += v;
-    }
+if (player.y < 60){
+    res.style.display = "block";
+    let btn = document.getElementById('reset-game');
+    btn.onclick = function resetPlayerPosition (){
+    player.x =200;
+    player.y =403;
+    res.style.display = "none";
+};
 }
 };
 
