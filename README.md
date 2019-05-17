@@ -1,20 +1,30 @@
-# Classic Arcade Game Clone Project
+# Classic Arcade Game
 
 ## Table of Contents
 
 - [Instructions](#instructions)
-- [Contributing](#contributing)
+- [Features](Features)
+- [Rules](#Rules)
+
 
 ## Instructions
+This is a simple game to cross the path full of enemy to reach to the water. 
+To play the game clone the repo and to run the game you need to open the index.html in browser. 
 
-Use this [rubric](https://review.udacity.com/#!/rubrics/15/view) for self-checking your submission.
+## Features
+* Player will start the game from the bottom middle on the grass. 
+* Player can move over the grid only in four direction. 
+* Player can not go out of the grid. 
+* After reaching the top water zone game will be completed. 
+* 'Congratulation' Message will appear on top if the game compltes. 
+* After the game is over player will not be able to move anymore. 
+* But player can use play again button to play the game again. 
 
-Make sure the functions you write are **object-oriented** - either class functions (like `Player` and `Enemy`) or class prototype functions such as `Enemy.prototype.checkCollisions`. Also make sure that the keyword `this` is used appropriately within your class and class prototype functions to refer to the object the function is called upon.
+## Rules
+* use arrows to move the player up down left right. 
+* There are threee tracks of enemy moving in random speed. 
+* As a player your target is to cross the road full of enemy. 
+* if you have the collision with the enemy then the player will be send back to initial position and has to try again. 
+* you win the game when you reach the water in the other side. 
 
-Your **README.md** file should be updated with instructions on both how to 1. Run and 2. Play your arcade game.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
