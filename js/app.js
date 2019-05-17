@@ -1,25 +1,23 @@
-// Enemies our player must avoid
+
 let res = document.getElementById("res");
     res.style.display = "none";
-
+// this function returns a random integer between the two parameter. 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+// Enemies our player must avoid
 var Enemy = function(x,y) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+    // variable x , y indicates the position. 
     this.x = x;
     this.y = y; 
     this.speed = getRandomInt(5, 25)*25;
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+    // this.sprite shows the image
     this.sprite = 'images/enemy-bug.png';
 };
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+// Update function is used for changing the enemy location. 
 Enemy.prototype.update = function(dt) {
     this.x += dt*this.speed;
     if(this.x>480){
@@ -34,22 +32,18 @@ Enemy.prototype.update = function(dt) {
         player.y = 403;
 
     };
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
 };
 
-// Draw the enemy on the screen, required method for game
+// Render will draw the enemy 
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+//Player class will render / move player. 
 
 var Player = function(x,y) {
     this.sprite = 'images/char-boy.png';
+    // x, y is the player position. 
     this.x = x; 
     this.y = y; 
 };
@@ -57,12 +51,14 @@ var Player = function(x,y) {
 Player.prototype.update = function(){
 
 }
+
+// render will draw player. 
 Player.prototype.render = function() {
    
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-
+// this will get the user input and use only 4 arrows to move the player in the grid 
 Player.prototype.handleInput = function(keystr) {
 let h = 100;
 let v = 82;
@@ -103,9 +99,7 @@ if (player.y < 60){
 }
 };
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+// creating enemy arrays here 4 enemies generated. 
 let allEnemies = [];
 for (i=0;i<5;i++){
     let enemy = new Enemy(-100,60+83*(i%3));
@@ -114,8 +108,7 @@ for (i=0;i<5;i++){
 
 let player = new Player(200,403);
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+//This is eventlistener to listen to keystroke. 
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
