@@ -22,14 +22,15 @@ Enemy.prototype.update = function(dt) {
     this.x += dt*this.speed;
     if(this.x>480){
         this.speed = getRandomInt(5, 25)*25;
-        this.x=-100;
+        this.x= -100;
     }
     let xDif = Math.abs(player.x -this.x);
     let yDif = Math.abs(player.y-this.y);
 
-    if (xDif<25 && yDif<25){
+    if (xDif<70 && yDif<25){
         player.x = 200;
         player.y = 403;
+        
 
     };
 };
@@ -48,10 +49,6 @@ var Player = function(x,y) {
     this.y = y; 
 };
 
-Player.prototype.update = function(){
-
-}
-
 // render will draw player. 
 Player.prototype.render = function() {
    
@@ -63,37 +60,37 @@ Player.prototype.handleInput = function(keystr) {
 let h = 100;
 let v = 82;
 
-if(player.y>74){
+if(this.y>74){
     if(keystr=="left"){
-        if(player.x> 0){
-            player.x -= h;
+        if(this.x> 0){
+           this.x -= h;
         }
         
     }else if (keystr== "right"){
-        if (player.x <400){
-            player.x += h;
+        if (this.x <400){
+           this.x += h;
         }
         
     }
     else if (keystr == "up"){
-        if (player.y>30){
-            player.y -= v;
+        if (this.y>30){
+            this.y -= v;
         }
         
     }
     else if (keystr == "down"){
-        if (player.y <400){
-            player.y += v;
+        if (this.y <400){
+            this.y += v;
         }
     }
 
 }
-if (player.y < 60){
+if (this.y < 60){
     res.style.display = "block";
     let btn = document.getElementById('reset-game');
     btn.onclick = function resetPlayerPosition (){
-    player.x =200;
-    player.y =403;
+    this.x =200;
+    this.y =403;
     res.style.display = "none";
 };
 }
